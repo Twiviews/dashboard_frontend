@@ -3,20 +3,20 @@ import React, { useState, Fragment } from "react";
 import TodoItem from "./TodoItem";
 import TodoFilters from "./TodoFilters";
 
-const TodoPrivateList = props => {
+const LabeledReviewsList = props => {
   const [state, setState] = useState({
     filter: "all",
     clearInProgress: false,
     todos: [
       {
         id: "1",
-        title: "This is private todo 1",
+        title: "This is labeled review 1",
         is_completed: true,
         is_public: false
       },
       {
         id: "2",
-        title: "This is private todo 2",
+        title: "This is labeled review 2",
         is_completed: false,
         is_public: false
       }
@@ -61,4 +61,4 @@ const TodoPrivateList = props => {
   );
 };
 
-export default TodoPrivateList;
+export default LabeledReviewsList;

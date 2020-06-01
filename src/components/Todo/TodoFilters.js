@@ -13,25 +13,25 @@ const TodoFilters = ({
     };
   };
 
-  // The clear completed button if these are personal todos
-  const clearCompletedButton = (
-    <button onClick={clearCompletedFn} className="clearComp">
-      Clear completed
-    </button>
-  );
+  // // The clear completed button if these are personal todos
+  // const clearCompletedButton = (
+  //   <button onClick={clearCompletedFn} className="clearComp">
+  //     Clear completed
+  //   </button>
+  // );
 
-  const activeTodos = todos.filter(todo => todo.is_completed !== true);
+  // const activeTodos = todos.filter(todo => todo.is_completed !== true);
 
-  let itemCount = todos.length;
-  if (currentFilter === "active") {
-    itemCount = activeTodos.length;
-  } else if (currentFilter === "completed") {
-    itemCount = todos.length - activeTodos.length;
-  }
+  // let itemCount = todos.length;
+  // if (currentFilter === "active") {
+  //   itemCount = activeTodos.length;
+  // } else if (currentFilter === "completed") {
+  //   itemCount = todos.length - activeTodos.length;
+  // }
 
   return (
     <div className="footerList">
-      <span>
+      {/* <span>
         {" "}
         {itemCount} item
         {itemCount !== 1 ? "s" : ""}
@@ -53,7 +53,7 @@ const TodoFilters = ({
         </li>
       </ul>
 
-      {clearCompletedButton}
+      {clearCompletedButton} */}
     </div>
   );
 };
