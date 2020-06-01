@@ -78,7 +78,7 @@ body {
   font-size: 14px;
 }
 
-.todoWrapper {
+.reviewWrapper {
   position: relative;
   width: 100%;
 }
@@ -116,31 +116,27 @@ body {
   opacity: 0.6;
 }
 
-.todoListWrapper {
+.reviewListWrapper {
   border-top: 1px solid #e6e6e6;
   -webkit-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
   -moz-box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
 }
 
-.todoListWrapper ul {
+.reviewListWrapper ul {
   -webkit-padding-start: 0px;
   -moz-padding-start: 0px;
   margin-bottom: 0;
+  padding-left: 0;
 }
 
-.todoListWrapper ul li {
+.reviewListWrapper ul li {
   list-style-type: none;
-  min-height: 60px;
-  max-height: 60px;
-  /* overflow: auto; */
-  display: flex;
-  font-size: 14px;
-  align-items: center;
-  border-bottom: 1px solid #ededed;
-  background-color: #fff;
-  position: relative;
+  padding: 10px;
+  text-decoration: none;
 }
+
+
 
 .closeBtn {
   background-color: transparent;
@@ -165,14 +161,18 @@ body {
 }
 
 .labelContent {
-  padding-left: 1px;
+  padding: 10px;
+  /* padding-left: 250px;
   color: #777;
   width: calc(100% - 128px);
   max-height: 60px;
   overflow: auto;
   display: flex;
-  align-items: center;
+  align-items: vertical; */
 }
+
+
+
 
 .labelContent.completed {
   text-decoration: line-through;
