@@ -2,6 +2,11 @@ import React from "react";
 
 const ReviewItem = ({ index, review }) => {
     
+  const removeReview = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
   return (
     <li>
       <div className="view">

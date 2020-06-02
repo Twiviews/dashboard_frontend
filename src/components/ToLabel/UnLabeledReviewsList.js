@@ -1,35 +1,9 @@
 import React, { useState, Fragment } from "react";
-import gql from 'graphql-tag';
-
 import ReviewItem from "./ReviewItem";
-
 import {useQuery} from '@apollo/react-hooks';
+import {GET_UNLABELED_REVIEWS} from "./reviews.graphql"
 
-const GET_UNLABELED_REVIEWS = gql`
-                query getUnLabeledReviews {
-                        pub_review_paragraphs(where:{
-                                                      is_labeled:{ _eq: false}},
-                                                      limit:5,
-                                                      order_by: { date_created: desc})
-                                                      {
-                                                          id
-                                                          review_id
-                                                          paragraph_text
-                                                          date_created
-                                                          is_labeled   
-                                                          production_values 
-		                                                      how_film_works 
-		                                                      enjoyability 
-		                                                      why_film_works 
-                                                      		effects_on_people 
-		                                                      no_production_values 
-		                                                      how_film_doesnt_work 
-		                                                      no_enjoyability 
-		                                                      why_film_doesnt_work 
-		                                                      no_effect_on_people 
-		                                                      sentiment       
-                                                      }
-                                }`;
+
 
 const UnLabeledReviewsList = props => {
   
@@ -78,4 +52,3 @@ const UnLabeledReviewsListQuery = () => {
 };
 
 export default UnLabeledReviewsListQuery
-export {GET_UNLABELED_REVIEWS}
