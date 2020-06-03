@@ -1,7 +1,7 @@
 import React from "react";
 
 import Header from "./Header";
-import UnLabeledReviewsWrapper from "./ToLabel/UnLabeledReviewsWrapper";
+import UnLabeledReviewsWrapper from "./Reviews/UnLabeledReviewsWrapper";
 import OnlineUsersWrapper from "./OnlineUsers/OnlineUsersWrapper";
 
 import ApolloClient from 'apollo-client';
