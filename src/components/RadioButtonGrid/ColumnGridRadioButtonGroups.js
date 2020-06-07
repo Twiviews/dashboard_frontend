@@ -1,14 +1,16 @@
-import React from 'react';
+import React,{useContext} from 'react';
 
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
+import Button from '@material-ui/core/Button';
 import ProductionValuesRadioButtonGroup from './ProductionValuesRadioButtonGroup'
 import HowFilmWorksRadioButtonGroup from './HowFilmWorksRadioButtonGroup'
 import EnjoyabilityRadioButtonGroup from './EnjoyabilityRadioButtonGroup'
 import WhyFilmWorksRadioButtonGroup from './WhyFilmWorksRadioButtonGroup'
 import EffectsOnPeopleRadioButtonGroup from './EffectsOnPeopleRadioButtonGroup'
 import OverallSentimentRadioButtonGroup from './OverallSentimentRadioButtonGroup'
+import {AllRadioOutputContext} from '../../contexts/AllRadioOutputContext/AllRadioOutputContext'
 
 const styles = theme => ({
   root: {
@@ -21,7 +23,10 @@ const styles = theme => ({
   }
 });
 
-const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes }) => (
+const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
+  const radioContext = useContext(AllRadioOutputContext);
+  
+  return (
   <div className={classes.root}>
     <Grid container xs={9} direction="row" spacing={2}>
       <Grid container item xs={2} zeroMinWidth>
@@ -53,9 +58,18 @@ const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes }) => (
               <Paper className={classes.paper}>
                 <OverallSentimentRadioButtonGroup />
               </Paper>
-      </Grid>      
+      </Grid>    
+      <Grid container item xs={2} zeroMinWidth>
+              <Paper className={classes.paper}>
+                <Button variant="contained" color="primary" onClick={()=>{radioContext.radioDispatch({ type: 'submitted'});radioContext.radioDispatch({ type: 'setId',payload:id})}}>
+                Save
+                </Button>
+              </Paper>
+      </Grid>     
     </Grid>
   </div>
-));
+)
+
+});
 
 export default ColumnGridRadioButtonGroups;

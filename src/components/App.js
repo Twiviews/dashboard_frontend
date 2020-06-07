@@ -9,7 +9,7 @@ import { InMemoryCache } from 'apollo-cache-inmemory';
 import { HttpLink } from 'apollo-link-http';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { useAuth0 } from "./Auth/react-auth0-spa";
-
+import AllRadioOutput from '../contexts/AllRadioOutputContext/AllRadioOutputContext'
 
 const createApolloClient = (authToken) => {
   return new ApolloClient({
@@ -32,6 +32,7 @@ const App = ({ idToken }) => {
   const client = createApolloClient(idToken);
   return (
     <ApolloProvider client={client}>
+    <AllRadioOutput client={client}>
       <div>
       <Header logoutHandler={logout} />
       <div className="row container-fluid p-left-right-0 m-left-right-0">
@@ -47,7 +48,7 @@ const App = ({ idToken }) => {
           </div>
         </div>
       </div>
-    
+      </AllRadioOutput>
     </ApolloProvider>  
   );    
 };

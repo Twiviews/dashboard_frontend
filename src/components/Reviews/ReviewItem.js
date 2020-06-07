@@ -34,7 +34,7 @@ const ReviewItem = withStyles(styles)(({ classes, index, review }) => {
             </Typography>
           </Grid>
 
-        <ColumnGridRadioButtonGroups/>
+        <ColumnGridRadioButtonGroups id={review.id}/>
 
       </Container>
         

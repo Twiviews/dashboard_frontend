@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import RadioGroup from './RadioGroup'
+import {AllRadioOutputContext} from '../../contexts/AllRadioOutputContext/AllRadioOutputContext'
+
 
 const options = [
   { label: 'N/A', value: 'not_applicable' },
@@ -9,9 +11,18 @@ const options = [
 
 export default function ProductionValuesRadioButtonGroup() {
   const [value, setValue] = useState('not_applicable');
+  const radioContext = useContext(AllRadioOutputContext);
+
 
   const onChange = e => {
     setValue(e.target.value);
+    if(e.target.value === 'production_values') {
+      radioContext.radioDispatch({ type: 'productionValues'})
+    } else if(e.target.value === 'no_production_values') {
+      radioContext.radioDispatch({ type: 'noProductionValues'})
+    } else if(e.target.value === 'not_applicable') {
+      radioContext.radioDispatch({ type: 'noProductionValues'})
+    }
   };
 
   return (
