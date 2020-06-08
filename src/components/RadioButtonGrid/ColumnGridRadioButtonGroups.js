@@ -19,8 +19,14 @@ const styles = theme => ({
   paper: {
     padding: theme.spacing(1),
     textAlign: 'center',
-    color: theme.palette.text.secondary
-  }
+    color: theme.palette.text.secondary,
+    fontSize: 0.6,
+  },
+  buttonStyles: {
+  position: "absolute",
+  marginLeft: "87.5%",
+  marginTop: "11%",
+  },
 });
 
 const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
@@ -28,7 +34,7 @@ const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
   
   return (
   <div className={classes.root}>
-    <Grid container xs={9} direction="row" spacing={2}>
+    <Grid container xs={12} direction="row" spacing={2}>
       <Grid container item xs={2} zeroMinWidth>
             <Paper className={classes.paper}>
                 <ProductionValuesRadioButtonGroup />
@@ -54,18 +60,14 @@ const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
                 <EffectsOnPeopleRadioButtonGroup />
             </Paper>
       </Grid>
-      <Grid container item xs={2} zeroMinWidth>
+      <Grid container item xs={1} zeroMinWidth>
               <Paper className={classes.paper}>
                 <OverallSentimentRadioButtonGroup />
               </Paper>
       </Grid>    
-      <Grid container item xs={2} zeroMinWidth>
-              <Paper className={classes.paper}>
-                <Button variant="contained" color="primary" onClick={()=>{radioContext.radioDispatch({ type: 'submitted'});radioContext.radioDispatch({ type: 'setId',payload:id})}}>
+      <Button size="small" className={classes.buttonStyles} variant="contained" color="primary" onClick={()=>{radioContext.radioDispatch({ type: 'submitted'});radioContext.radioDispatch({ type: 'setId',payload:id})}}>
                 Save
-                </Button>
-              </Paper>
-      </Grid>     
+      </Button>
     </Grid>
   </div>
 )
