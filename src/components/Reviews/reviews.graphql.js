@@ -4,8 +4,8 @@ export const GET_UNLABELED_REVIEWS = gql`
                 subscription getUnLabeledReviews {
                         pub_review_paragraphs(where:{
                                                       is_labeled:{ _eq: false},
-                                                      is_deleted:{ _eq: false}
-                                                      
+                                                      is_deleted:{ _eq: false},
+                                                      is_undecided:{ _eq: false}
                                                       },
                                                       limit:25,
                                                       order_by: { review_id : desc })
@@ -15,7 +15,8 @@ export const GET_UNLABELED_REVIEWS = gql`
                                                         paragraph_text
                                                         date_created
                                                         is_labeled
-                                                        is_deleted   
+                                                        is_deleted
+                                                        is_undecided   
                                                         production_values 
 		                                                how_film_works 
 		                                                enjoyability 

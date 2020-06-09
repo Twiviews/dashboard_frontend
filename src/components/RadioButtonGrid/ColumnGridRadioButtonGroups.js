@@ -11,6 +11,10 @@ import WhyFilmWorksRadioButtonGroup from './WhyFilmWorksRadioButtonGroup'
 import EffectsOnPeopleRadioButtonGroup from './EffectsOnPeopleRadioButtonGroup'
 import OverallSentimentRadioButtonGroup from './OverallSentimentRadioButtonGroup'
 import {AllRadioOutputContext} from '../../contexts/AllRadioOutputContext/AllRadioOutputContext'
+import DeleteIcon from '@material-ui/icons/Delete';
+import SaveIcon from '@material-ui/icons/Save';
+import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
+
 
 const styles = theme => ({
   root: {
@@ -24,17 +28,23 @@ const styles = theme => ({
   },
   saveStyles: {
     position: "absolute",
-    marginLeft: "85%",
-    marginTop: "8%",
+    marginLeft: "80%",
+    marginTop: "10%",
   },
   
   deleteStyles:{
     position: "absolute",
-    marginLeft: "85%",
+    marginLeft: "80%",
+    marginTop: "6%",
+  },
+
+  undecidedStyles:{
+    position: "absolute",
+    marginLeft: "80%",
     marginTop: "2%",
+    margin: theme.spacing(1),
 
   }
-
 
 });
 
@@ -73,15 +83,41 @@ const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
               <Paper className={classes.paper}>
                 <OverallSentimentRadioButtonGroup />
               </Paper>
-      </Grid>    
+      </Grid>  
 
-      <Button size="medium" className={classes.deleteStyles} variant="contained" color="secondary" onClick={()=>{radioContext.radioDispatch({ type: 'deleted'});radioContext.radioDispatch({ type: 'setId',payload:id})}}>
-                Delete
+      <Button
+        variant="contained"
+        color="secondary"
+        size="medium"
+        className={classes.undecidedStyles}        
+        startIcon={<ThreeSixtyIcon />}
+        onClick={()=>{radioContext.radioDispatch({ type: 'undecided'});radioContext.radioDispatch({ type: 'setId',payload:id})}}
+      >
+        Undecided
       </Button>
 
-      <Button size="medium" className={classes.saveStyles} variant="contained" color="primary" onClick={()=>{radioContext.radioDispatch({ type: 'submitted'});radioContext.radioDispatch({ type: 'setId',payload:id})}}>
-                Save
+      <Button
+        variant="contained"
+        color="secondary"
+        size="medium"
+        className={classes.deleteStyles}
+        startIcon={<DeleteIcon />}
+        onClick={()=>{radioContext.radioDispatch({ type: 'deleted'});radioContext.radioDispatch({ type: 'setId',payload:id})}}
+      >
+        Delete
       </Button>
+
+      <Button
+        variant="contained"
+        color="primary"
+        size="medium"
+        className={classes.saveStyles}
+        startIcon={<SaveIcon />}
+        onClick={()=>{radioContext.radioDispatch({ type: 'submitted'});radioContext.radioDispatch({ type: 'setId',payload:id})}}
+      >
+        Save
+      </Button>
+      
     </Grid>
   </div>
 )

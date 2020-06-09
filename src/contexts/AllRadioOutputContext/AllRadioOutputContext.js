@@ -141,6 +141,13 @@ const AllRadioOutputReducer = (state, action) => {
                 is_deleted: true,
         }
 
+        case "undecided":
+            return {
+                ...state,
+                submitted: true,
+                is_undecided: true,
+        }
+
         case "not_submitted":
          return {
              ...state,
@@ -164,6 +171,7 @@ mutation update_pub_review_paragraphs_by_pk($_set: pub_review_paragraphs_set_inp
       production_values
       is_labeled
       is_deleted
+      is_undecided
     }
   }
 `;
@@ -186,7 +194,8 @@ const AllRadioOutput = props => {
        id:0,
        sentiment:'neutral',
        is_labeled:'false',
-       is_deleted:'false',   
+       is_deleted:'false',
+       is_undecided:'false'   
     }
 
 
@@ -221,7 +230,8 @@ const AllRadioOutput = props => {
                                     production_values:state.productionValues,
                                     sentiment:state.sentiment,
                                     is_labeled:state.is_labeled,
-                                    is_deleted:state.is_deleted                              
+                                    is_deleted:state.is_deleted,
+                                    is_undecided:state.is_undecided                              
                                 }
                             },
             }
@@ -249,6 +259,7 @@ const AllRadioOutput = props => {
             sentiment:state.sentiment,   
             is_labeled:state.is_labeled,
             is_deleted:state.is_deleted,
+            is_undecided:state.is_undecided,
             radioDispatch:dispatch,
             radioOutputState:state,
             id:state.id
