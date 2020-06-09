@@ -24,8 +24,8 @@ const styles = theme => ({
   },
   buttonStyles: {
   position: "absolute",
-  marginLeft: "87.5%",
-  marginTop: "11%",
+  marginLeft: "85%",
+  marginTop: "10%",
   },
 });
 
@@ -65,7 +65,7 @@ const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
                 <OverallSentimentRadioButtonGroup />
               </Paper>
       </Grid>    
-      <Button size="small" className={classes.buttonStyles} variant="contained" color="primary" onClick={()=>{radioContext.radioDispatch({ type: 'submitted'});radioContext.radioDispatch({ type: 'setId',payload:id})}}>
+      <Button size="medium" className={classes.buttonStyles} variant="contained" color="primary" onClick={()=>{radioContext.radioDispatch({ type: 'submitted'});radioContext.radioDispatch({ type: 'setId',payload:id})}}>
                 Save
       </Button>
     </Grid>
