@@ -133,6 +133,14 @@ const AllRadioOutputReducer = (state, action) => {
                 submitted: true,
                 is_labeled: true,
         }
+
+        case "deleted":
+            return {
+                ...state,
+                submitted: true,
+                is_deleted: true,
+        }
+
         case "not_submitted":
          return {
              ...state,
@@ -155,6 +163,7 @@ mutation update_pub_review_paragraphs_by_pk($_set: pub_review_paragraphs_set_inp
       no_production_values
       production_values
       is_labeled
+      is_deleted
     }
   }
 `;
@@ -176,7 +185,8 @@ const AllRadioOutput = props => {
        productionValues:false,
        id:0,
        sentiment:'neutral',
-       is_labeled:'false'   
+       is_labeled:'false',
+       is_deleted:'false',   
     }
 
 
@@ -210,7 +220,8 @@ const AllRadioOutput = props => {
                                     why_film_works: state.why_film_works,
                                     production_values:state.productionValues,
                                     sentiment:state.sentiment,
-                                    is_labeled:state.is_labeled                              
+                                    is_labeled:state.is_labeled,
+                                    is_deleted:state.is_deleted                              
                                 }
                             },
             }
@@ -237,6 +248,7 @@ const AllRadioOutput = props => {
             why_film_works:state.why_film_works,
             sentiment:state.sentiment,   
             is_labeled:state.is_labeled,
+            is_deleted:state.is_deleted,
             radioDispatch:dispatch,
             radioOutputState:state,
             id:state.id

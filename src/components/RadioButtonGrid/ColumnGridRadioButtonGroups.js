@@ -22,11 +22,20 @@ const styles = theme => ({
     color: theme.palette.text.secondary,
     fontSize: 0.6,
   },
-  buttonStyles: {
-  position: "absolute",
-  marginLeft: "85%",
-  marginTop: "10%",
+  saveStyles: {
+    position: "absolute",
+    marginLeft: "85%",
+    marginTop: "8%",
   },
+  
+  deleteStyles:{
+    position: "absolute",
+    marginLeft: "85%",
+    marginTop: "2%",
+
+  }
+
+
 });
 
 const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
@@ -65,7 +74,12 @@ const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
                 <OverallSentimentRadioButtonGroup />
               </Paper>
       </Grid>    
-      <Button size="medium" className={classes.buttonStyles} variant="contained" color="primary" onClick={()=>{radioContext.radioDispatch({ type: 'submitted'});radioContext.radioDispatch({ type: 'setId',payload:id})}}>
+
+      <Button size="medium" className={classes.deleteStyles} variant="contained" color="secondary" onClick={()=>{radioContext.radioDispatch({ type: 'deleted'});radioContext.radioDispatch({ type: 'setId',payload:id})}}>
+                Delete
+      </Button>
+
+      <Button size="medium" className={classes.saveStyles} variant="contained" color="primary" onClick={()=>{radioContext.radioDispatch({ type: 'submitted'});radioContext.radioDispatch({ type: 'setId',payload:id})}}>
                 Save
       </Button>
     </Grid>

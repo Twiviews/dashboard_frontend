@@ -16,7 +16,7 @@ const UnLabeledReviewsList = props => {
    let filteredReviews = reviews;
 
    if (state.filter === "unlabeled") {     
-    filteredReviews = reviews.filter(review => review.is_labeled === false);
+    filteredReviews = reviews.filter(review => review.is_labeled === false && review.is_deleted === false);
   }
 
   const reviewList = [];
