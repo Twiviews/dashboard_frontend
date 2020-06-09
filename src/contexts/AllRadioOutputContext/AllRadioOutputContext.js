@@ -13,42 +13,64 @@ const AllRadioOutputReducer = (state, action) => {
                 effectsOnPeople: true,
                 noEffectOnPeople: false,
             }
+
+        case "noEffectOnPeople":
+            return {
+                    ...state,
+                    noEffectOnPeople: true,
+                    effectsOnPeople: false,
+            }
+
+        case "not_applicable_noEffectOnPeople":
+            return {
+                    ...state,
+                    noEffectOnPeople: false,
+                    effectsOnPeople: false,
+            }
+
         case "enjoyability":
             return {
                 ...state,
                 enjoyability: true,
                 noEnjoyability: false,
         }
-        case "howFilmDoesntWork":
-            return {
-            ...state,
-            howFilmDoesntWork: true,
-            howFilmWorks: false,
-        }
-        case "howFilmWorks":
-            return {
-                ...state,
-                howFilmWorks: true,
-                howFilmDoesntWork: false,
-            }
-        case "noEffectOnPeople":
-            return {
-                ...state,
-                noEffectOnPeople: true,
-                effectsOnPeople: false,
-        }
+
         case "noEnjoyability":
             return {
             ...state,
             noEnjoyability: true,
             enjoyability: false,
         }
-        case "noProductionValues":
+
+        case "not_applicable_noEnjoyability":
+            return {
+            ...state,
+            noEnjoyability: false,
+            enjoyability: false,
+        }
+
+        case "howFilmWorks":
             return {
                 ...state,
-                noProductionValues: true,
-                productionValues: false,
+                howFilmWorks: true,
+                howFilmDoesntWork: false,
+            }
+
+        case "howFilmDoesntWork":
+            return {
+            ...state,
+            howFilmDoesntWork: true,
+            howFilmWorks: false,
         }
+
+        
+        case "not_applicable_howFilmWorks":
+            return {
+            ...state,
+            howFilmDoesntWork: false,
+            howFilmWorks: false,
+        }
+        
         case "productionValues":
         return {
             ...state,
@@ -56,18 +78,44 @@ const AllRadioOutputReducer = (state, action) => {
             noProductionValues: false,
 
         }
+        
+        case "noProductionValues":
+            return {
+                ...state,
+                noProductionValues: true,
+                productionValues: false,
+        }
+
+        case "not_applicable_productionValues":
+            return {
+                ...state,
+                noProductionValues: false,
+                productionValues: false,
+        }
+        
         case "why_film_works":
         return {
             ...state,
             why_film_works: true,
             why_film_doesnt_work: false,
         }
+        
         case "why_film_doesnt_work":
         return {
             ...state,
             why_film_doesnt_work: true,
             why_film_works: false,
         }
+
+        case "not_applicable_why_film_works":
+        return {
+            ...state,
+            why_film_doesnt_work: false,
+            why_film_works: false,
+        }
+
+        
+
         case "sentiment":
         return {
             ...state,
@@ -83,6 +131,7 @@ const AllRadioOutputReducer = (state, action) => {
             return {
                 ...state,
                 submitted: true,
+                is_labeled: true,
         }
         case "not_submitted":
          return {
@@ -105,6 +154,7 @@ mutation update_pub_review_paragraphs_by_pk($_set: pub_review_paragraphs_set_inp
       no_enjoyability
       no_production_values
       production_values
+      is_labeled
     }
   }
 `;
@@ -125,7 +175,8 @@ const AllRadioOutput = props => {
        why_film_works: false,
        productionValues:false,
        id:0,
-       sentiment:'neutral'   
+       sentiment:'neutral',
+       is_labeled:'false'   
     }
 
 
@@ -158,7 +209,8 @@ const AllRadioOutput = props => {
                                     why_film_doesnt_work: state.why_film_doesnt_work, 
                                     why_film_works: state.why_film_works,
                                     production_values:state.productionValues,
-                                    sentiment:state.sentiment                               
+                                    sentiment:state.sentiment,
+                                    is_labeled:state.is_labeled                              
                                 }
                             },
             }
@@ -184,6 +236,7 @@ const AllRadioOutput = props => {
             why_film_doesnt_work:state.why_film_doesnt_work, 
             why_film_works:state.why_film_works,
             sentiment:state.sentiment,   
+            is_labeled:state.is_labeled,
             radioDispatch:dispatch,
             radioOutputState:state,
             id:state.id

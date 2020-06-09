@@ -21,7 +21,7 @@ export default function HowFilmWorksRadioButtonGroup() {
     } else if(e.target.value === 'how_film_doesnt_work') {
       radioContext.radioDispatch({ type: 'howFilmDoesntWork'})
     }else if(e.target.value === 'not_applicable') {
-      radioContext.radioDispatch({ type: 'howFilmDoesntWork'})
+      radioContext.radioDispatch({ type: 'not_applicable_howFilmWorks'})
     }
   };
 

@@ -23,7 +23,7 @@ export default function WhyFilmWorksRadioButtonGroup() {
     } else if(e.target.value === 'why_film_doesnt_work') {
       radioContext.radioDispatch({ type: 'why_film_doesnt_work'})
     }else if(e.target.value === 'not_applicable') {
-      radioContext.radioDispatch({ type: 'why_film_doesnt_work'})
+      radioContext.radioDispatch({ type: 'not_applicable_why_film_works'})
     }
   };
 

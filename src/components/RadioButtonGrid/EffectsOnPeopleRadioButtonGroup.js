@@ -20,7 +20,7 @@ export default function EffectsOnPeopleRadioButtonGroup() {
     } else if(e.target.value === 'no_effect_on_people') {
       radioContext.radioDispatch({ type: 'noEffectOnPeople'})
     } else if(e.target.value === 'not_applicable') {
-      radioContext.radioDispatch({ type: 'noEffectOnPeople'})
+      radioContext.radioDispatch({ type: 'not_applicable_noEffectOnPeople'})
     }
   };
 

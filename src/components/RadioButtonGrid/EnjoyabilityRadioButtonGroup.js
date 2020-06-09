@@ -23,7 +23,7 @@ export default function EnjoyabilityRadioButtonGroup() {
     } else if(e.target.value === 'no_enjoyability') {
       radioContext.radioDispatch({ type: 'noEnjoyability'})
     } else if(e.target.value === 'not_applicable') {
-      radioContext.radioDispatch({ type: 'noEnjoyability'})
+      radioContext.radioDispatch({ type: 'not_applicable_noEnjoyability'})
     }
   };
 

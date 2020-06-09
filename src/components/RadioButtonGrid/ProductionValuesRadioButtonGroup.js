@@ -21,7 +21,7 @@ export default function ProductionValuesRadioButtonGroup() {
     } else if(e.target.value === 'no_production_values') {
       radioContext.radioDispatch({ type: 'noProductionValues'})
     } else if(e.target.value === 'not_applicable') {
-      radioContext.radioDispatch({ type: 'noProductionValues'})
+      radioContext.radioDispatch({ type: 'not_applicable_productionValues'})
     }
   };
 
