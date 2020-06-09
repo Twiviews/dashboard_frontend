@@ -1,10 +1,10 @@
 import gql from 'graphql-tag';
 
 export const GET_UNLABELED_REVIEWS = gql`
-                query getUnLabeledReviews {
+                subscription getUnLabeledReviews {
                         pub_review_paragraphs(where:{
                                                       is_labeled:{ _eq: false}},
-                                                      limit:5,
+                                                      limit:100,
                                                       order_by: { review_id : desc })
                                                       {
                                                         id

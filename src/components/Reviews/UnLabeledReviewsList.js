@@ -1,8 +1,8 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 import ReviewItem from "./ReviewItem";
 import {useQuery} from '@apollo/react-hooks';
 import {GET_UNLABELED_REVIEWS} from "./reviews.graphql"
-
+import { useMutation, useSubscription } from "@apollo/react-hooks";
 
 
 
@@ -37,7 +37,7 @@ const UnLabeledReviewsList = props => {
 
 
 const UnLabeledReviewsListQuery = () => {
-  const { loading, error, data } = useQuery(GET_UNLABELED_REVIEWS);
+  const { loading, error, data } = useSubscription(GET_UNLABELED_REVIEWS);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -45,7 +45,8 @@ const UnLabeledReviewsListQuery = () => {
   if (error) {
     console.error(error);
     return <div>Error!</div>;
-  }
+  }  
+
   return <UnLabeledReviewsList reviews={data.pub_review_paragraphs} />;
 };
 
