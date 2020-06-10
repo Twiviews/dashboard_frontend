@@ -6,7 +6,7 @@ const OnlineUser = ({ user }) => {
       <div className="userImg">
         <i className="far fa-user" />
       </div>
-      <div className="userName">{user.name}</div>
+      <div className="userName">{user.username}</div>
     </div>
   );
 };

@@ -18,16 +18,16 @@ export const GET_UNLABELED_REVIEWS = gql`
                                                         is_deleted
                                                         is_undecided   
                                                         production_values 
-		                                                how_film_works 
-		                                                enjoyability 
-		                                                why_film_works 
+		                                                    how_film_works 
+		                                                    enjoyability 
+		                                                    why_film_works 
                                                       	effects_on_people 
-		                                                no_production_values 
-		                                                how_film_doesnt_work 
-		                                                no_enjoyability 
-		                                                why_film_doesnt_work 
-		                                                no_effect_on_people 
-		                                                sentiment       
+		                                                    no_production_values 
+		                                                    how_film_doesnt_work 
+		                                                    no_enjoyability 
+		                                                    why_film_doesnt_work 
+		                                                    no_effect_on_people 
+		                                                    sentiment       
                                                       }
                                 }`;
 

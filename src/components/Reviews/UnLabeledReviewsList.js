@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import ReviewItem from "./ReviewItem";
 import {useQuery} from '@apollo/react-hooks';
-import {GET_UNLABELED_REVIEWS} from "./reviews.graphql"
+import {GET_UNLABELED_REVIEWS} from "../graphql/reviews.graphql"
 import { useMutation, useSubscription } from "@apollo/react-hooks";
 
 
