@@ -19,9 +19,21 @@ const UnLabeledReviewsList = props => {
     filteredReviews = reviews.filter(review => review.is_labeled === false && review.is_deleted === false);
   }
 
+  
   const reviewList = [];
   filteredReviews.forEach((review, index) => {
-    reviewList.push(<ReviewItem key={index} index={index} review={review} />);     
+    let push = false    
+    let labeler = '"LABEL ME"!'
+    if(review.worked_by!== null){
+      if(review.id === review.worked_by.paragraph_id) {
+        labeler = review.worked_by.labeler_user.username
+        reviewList.push(<ReviewItem key={index} index={index} review={review} username={labeler} />);  
+        push = true             
+      }      
+    }
+    if(!push){
+      reviewList.push(<ReviewItem key={index} index={index} review={review} username={labeler} />);     
+    }
   });
 
   return (

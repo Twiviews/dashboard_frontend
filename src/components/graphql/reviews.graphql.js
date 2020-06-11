@@ -27,7 +27,13 @@ export const GET_UNLABELED_REVIEWS = gql`
 		                                                    no_enjoyability 
 		                                                    why_film_doesnt_work 
 		                                                    no_effect_on_people 
-		                                                    sentiment       
+		                                                    sentiment
+                                                        worked_by {
+                                                          paragraph_id
+                                                          labeler_user {
+                                                                          username
+                                                                      }
+                                                                  }       
                                                       }
                                 }`;
 

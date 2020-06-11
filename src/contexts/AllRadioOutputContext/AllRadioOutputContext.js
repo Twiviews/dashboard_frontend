@@ -236,7 +236,7 @@ const AllRadioOutput = props => {
                             },
             }
         ).then(({data})=>{
-            console.log(data);
+            // console.log(data);
         });
         return () => {
             dispatch({ type: 'not_submitted'})

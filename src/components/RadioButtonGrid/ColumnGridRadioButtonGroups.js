@@ -16,6 +16,7 @@ import SaveIcon from '@material-ui/icons/Save';
 import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
 
 
+
 const styles = theme => ({
   root: {
     flexGrow: 1
@@ -28,20 +29,20 @@ const styles = theme => ({
   },
   saveStyles: {
     position: "absolute",
-    marginLeft: "80%",
+    marginLeft: "82%",
     marginTop: "10%",
   },
   
   deleteStyles:{
     position: "absolute",
-    marginLeft: "80%",
-    marginTop: "6%",
+    marginLeft: "82%",
+    marginTop: "7%",
   },
 
   undecidedStyles:{
     position: "absolute",
-    marginLeft: "80%",
-    marginTop: "2%",
+    marginLeft: "82%",
+    marginTop: "4%",
     margin: theme.spacing(1),
 
   }
@@ -53,7 +54,7 @@ const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
   
   return (
   <div className={classes.root}>
-    <Grid container xs={12} direction="row" spacing={2}>
+    <Grid container direction="row" spacing={2}>
       <Grid container item xs={2} zeroMinWidth>
             <Paper className={classes.paper}>
                 <ProductionValuesRadioButtonGroup />
@@ -83,7 +84,7 @@ const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
               <Paper className={classes.paper}>
                 <OverallSentimentRadioButtonGroup />
               </Paper>
-      </Grid>  
+      </Grid>      
 
       <Button
         variant="contained"

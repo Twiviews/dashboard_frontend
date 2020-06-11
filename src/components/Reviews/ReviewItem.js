@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid';
+import WorkedByComponent from '../Reviews/WorkedByComponent'
 
 
 const styles = theme => ({
@@ -19,7 +20,7 @@ const styles = theme => ({
 });
 
 
-const ReviewItem = withStyles(styles)(({ classes, index, review }) => {
+const ReviewItem = withStyles(styles)(({ classes, index, review, username }) => {
     
   return (
     <li>
@@ -34,7 +35,15 @@ const ReviewItem = withStyles(styles)(({ classes, index, review }) => {
             </Typography>
           </Grid>
 
+          <Grid container item xs={9}>
+            <Typography align='justify' color='error' display='block'>
+              {'@'+username}
+            </Typography>
+          </Grid>
+
         <ColumnGridRadioButtonGroups id={review.id}/>
+        
+        <WorkedByComponent paragraph_id={review.id}/>
 
       </Container>
         

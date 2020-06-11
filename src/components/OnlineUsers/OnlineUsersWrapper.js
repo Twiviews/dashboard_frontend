@@ -57,6 +57,7 @@ const OnlineUsersWrapper = () => {
         </div>
         {onlineUsersList}
       </Fragment>
+
     </div>
   );
 };
