@@ -17,7 +17,7 @@ const createApolloClient = (authToken) => {
     // link: new HttpLink({
     link: new WebSocketLink({
       // uri: 'http://ec2-35-153-66-98.compute-1.amazonaws.com/v1/graphql',
-    uri: 'ws://ec2-35-153-66-98.compute-1.amazonaws.com/v1/graphql',
+    uri: 'wss://ec2-35-153-66-98.compute-1.amazonaws.com/v1/graphql',
       // headers: {
       //   Authorization: `Bearer ${authToken}`
       // }
