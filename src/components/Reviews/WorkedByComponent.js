@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useQuery, useMutation, useEffect } from "@apollo/react-hooks";
+import { useQuery, useMutation, useEffect, useSubscription } from "@apollo/react-hooks";
 import gql from "graphql-tag";
 import Button from '@material-ui/core/Button';
 
@@ -15,7 +15,7 @@ mutation InsertLabeler($paragraph_id: Int, $label_me: Boolean) {
 }
 `;
 const GET_LABELME = gql`
-query getLabelMe($paragraph_id: Int!) {
+subscription getLabelMe($paragraph_id: Int!) {
   labeler_by_pk(paragraph_id: $paragraph_id) {
     label_me
   }
@@ -24,12 +24,11 @@ query getLabelMe($paragraph_id: Int!) {
 
 export default function WorkedByComponent({classes, paragraph_id}) {
 
-  const [addLabeler] = useMutation(ADD_LABELER);
-  const [labelMe, setLabelMe] = useState(false);
+  const [addLabeler] = useMutation(ADD_LABELER);  
 
   let label_me = false
 
-  const { loading, error, data } = useQuery(GET_LABELME, {variables: { paragraph_id: paragraph_id}});
+  const { loading, error, data } = useSubscription(GET_LABELME, {variables: { paragraph_id: paragraph_id}});
   if (loading) return <p>Loading ...</p>;
   if (error) {
     console.error(error);
@@ -48,11 +47,10 @@ export default function WorkedByComponent({classes, paragraph_id}) {
         variant="contained"
         size="medium"
         color="inherit"
-        disabled = { label_me || labelMe } 
+        disabled = { label_me } 
         onClick={e => {
           e.preventDefault();
-          addLabeler({ variables: { paragraph_id: paragraph_id, label_me: true}});
-          setLabelMe(true)
+          addLabeler({ variables: { paragraph_id: paragraph_id, label_me: true}});          
         }} >      
         Label Me!
     </Button> 
