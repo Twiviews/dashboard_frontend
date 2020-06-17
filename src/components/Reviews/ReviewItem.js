@@ -23,12 +23,13 @@ const styles = theme => ({
 
 const GET_LABELER_COUNT = gql`
       subscription getLabelerCount($username: String_comparison_exp = {}) {
-  pub_review_paragraphs_aggregate(where: {labelers: {labeler_user: {username: $username}}, is_labeled: {_eq: true}}) {
+  pub_review_paragraphs_aggregate(where: {labelers: {labeler_user: {username: $username}}, is_labeled: {_eq: true}, is_deleted: {_eq: false}, is_undecided: {_eq: false}}) {
     aggregate {
       count(columns: id)
     }
   }
 }`;
+
 
 
 const ReviewItem = withStyles(styles)(({ classes, index, review, username }) => {
