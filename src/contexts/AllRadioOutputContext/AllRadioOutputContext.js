@@ -132,20 +132,28 @@ const AllRadioOutputReducer = (state, action) => {
                 ...state,
                 submitted: true,
                 is_labeled: true,
+                is_deleted: false,
+                is_undecided: false
+
         }
 
         case "deleted":
             return {
-                ...state,
-                submitted: true,
-                is_deleted: true,
+                ...state,     
+                submitted: true,          
+                is_deleted: true,                
+                is_labeled: false,
+                is_undecided: false
+
         }
 
         case "undecided":
             return {
-                ...state,
-                submitted: true,
-                is_undecided: true,
+                ...state,   
+                submitted: true,             
+                is_undecided: true,                
+                is_labeled: false,
+                is_deleted: false
         }
 
         case "not_submitted":
