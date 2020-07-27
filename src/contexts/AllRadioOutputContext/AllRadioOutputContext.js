@@ -216,7 +216,7 @@ const AllRadioOutput = props => {
        is_deleted:'false',
        is_undecided:'false',
        switchToggleValue:false,
-       user:''
+       labeler_user:''
     }
 
 
