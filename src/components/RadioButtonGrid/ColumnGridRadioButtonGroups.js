@@ -14,8 +14,8 @@ import {AllRadioOutputContext} from '../../contexts/AllRadioOutputContext/AllRad
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
-
-
+import gql from "graphql-tag";
+import { useSubscription } from "@apollo/react-hooks";
 
 const styles = theme => ({
   root: {
@@ -51,6 +51,27 @@ const styles = theme => ({
 
 const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
   const radioContext = useContext(AllRadioOutputContext);
+
+  let label_me = false
+
+  const GET_LABELME = gql`
+  subscription getLabelMe($paragraph_id: Int!) {
+  labeler_by_pk(paragraph_id: $paragraph_id) {
+    label_me
+  }
+}`;
+
+const { loading, error, data } = useSubscription(GET_LABELME, {variables: { paragraph_id: id}});
+  if (loading) return <p>Loading ...</p>;
+  if (error) {
+    console.error(error);
+    return <div>Error!</div>;
+  }
+
+  if(data.labeler_by_pk !== null){
+    label_me = data.labeler_by_pk.label_me; 
+  }
+
   
   return (
   <div className={classes.root}>
@@ -92,7 +113,7 @@ const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
         size="medium"
         className={classes.undecidedStyles}        
         startIcon={<ThreeSixtyIcon />}
-        onClick={()=>{radioContext.radioDispatch({ type: 'undecided'});radioContext.radioDispatch({ type: 'setId',payload:id})}}
+        onClick={()=>{ if(label_me) {radioContext.radioDispatch({ type: 'undecided'});radioContext.radioDispatch({ type: 'setId',payload:id})} else { alert('Please click LABEL ME! first') }}}
       >
         Undecided
       </Button>
@@ -103,7 +124,7 @@ const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
         size="medium"
         className={classes.deleteStyles}
         startIcon={<DeleteIcon />}
-        onClick={()=>{radioContext.radioDispatch({ type: 'deleted'});radioContext.radioDispatch({ type: 'setId',payload:id})}}
+        onClick={()=>{ if(label_me) {radioContext.radioDispatch({ type: 'deleted'});radioContext.radioDispatch({ type: 'setId',payload:id})} else { alert('Please click LABEL ME! first')}}}
       >
         Delete
       </Button>
@@ -114,7 +135,7 @@ const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
         size="medium"
         className={classes.saveStyles}
         startIcon={<SaveIcon />}
-        onClick={()=>{radioContext.radioDispatch({ type: 'submitted'});radioContext.radioDispatch({ type: 'setId',payload:id})}}
+        onClick={()=>{ if(label_me) {radioContext.radioDispatch({ type: 'submitted'});radioContext.radioDispatch({ type: 'setId',payload:id})} else { alert('Please click LABEL ME! first')}}}
       >
         Save
       </Button>
