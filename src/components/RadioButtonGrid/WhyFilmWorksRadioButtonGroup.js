@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react';
+import React, { useState,useContext,useEffect } from 'react';
 import RadioGroup from './RadioGroup'
 import {AllRadioOutputContext} from '../../contexts/AllRadioOutputContext/AllRadioOutputContext'
 
@@ -11,10 +11,10 @@ const options = [
 
 
 
-export default function WhyFilmWorksRadioButtonGroup() {
+export default function WhyFilmWorksRadioButtonGroup(review) {
   const [value, setValue] = useState('not_applicable');
   const radioContext = useContext(AllRadioOutputContext);
-
+  const {switchToggleValue} = radioContext;
 
   const onChange = e => {
     setValue(e.target.value);
@@ -27,13 +27,27 @@ export default function WhyFilmWorksRadioButtonGroup() {
     }
   };
 
+  
+  useEffect(() => {
+    if(switchToggleValue) {
+         console.log(review);
+         if(review.review.why_film_works === true) {
+          radioContext.radioDispatch({ type: 'why_film_works'});
+          setValue('why_film_works');
+        } else if(review.review.why_film_doesnt_work === true) {
+          radioContext.radioDispatch({ type: 'why_film_doesnt_work'});
+          setValue('why_film_doesnt_work');
+        } else {
+          radioContext.radioDispatch({ type: 'not_applicable_why_film_works'});
+          setValue('not_applicable');
+        } 
+    }
+    return () => {
+    }
+  }, [switchToggleValue])
+
   return (
-    <RadioGroup
-      value={value}
-      options={options}
-      name="whyfilmworks"
-      
-      onChange={onChange}
-    />
+    (switchToggleValue === false)  ? <RadioGroup value={value} options={options} name="whyfilmworks" onChange={onChange}/> 
+    : (switchToggleValue === true)  &&  <RadioGroup value={value} options={options} name="whyfilmworks" disabled/> 
   );
 }

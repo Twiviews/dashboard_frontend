@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useContext,useEffect} from "react";
 
 import Header from "./Header";
 import UnLabeledReviewsWrapper from "./Reviews/UnLabeledReviewsWrapper";
@@ -10,7 +10,9 @@ import { HttpLink } from 'apollo-link-http';
 import { WebSocketLink } from 'apollo-link-ws';
 import { ApolloProvider } from '@apollo/react-hooks';
 import { useAuth0 } from "./Auth/react-auth0-spa";
-import AllRadioOutput from '../contexts/AllRadioOutputContext/AllRadioOutputContext'
+import AllRadioOutput, { AllRadioOutputContext } from '../contexts/AllRadioOutputContext/AllRadioOutputContext'
+import ReviewLabelingParent from './ReviewLabelingParent/ReviewLabelingParent';
+import '../styles/App.css';
 
 const createApolloClient = (authToken) => {
   return new ApolloClient({
@@ -36,7 +38,10 @@ const createApolloClient = (authToken) => {
 
 const App = ({ idToken }) => {
   const { loading, logout } = useAuth0();
-  
+  /*
+  useEffect(()=>{
+    console.log(switchToggleValue);
+  },[switchToggleValue]) */
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -44,21 +49,7 @@ const App = ({ idToken }) => {
   return (
     <ApolloProvider client={client}>
     <AllRadioOutput client={client}>
-      <div>
-      <Header logoutHandler={logout} />
-      <div className="row container-fluid p-left-right-0 m-left-right-0">
-        <div className="row col-md-9 p-left-right-0 m-left-right-0">
-          
-            <UnLabeledReviewsWrapper />
-          
-        </div>
-        
-        <div className="col-md-3 p-left-right-0">
-          
-            <OnlineUsersWrapper />
-          </div>
-        </div>
-      </div>
+      <ReviewLabelingParent/>
       </AllRadioOutput>
     </ApolloProvider>  
   );    

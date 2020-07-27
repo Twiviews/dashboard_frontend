@@ -127,7 +127,6 @@ const AllRadioOutputReducer = (state, action) => {
             id: action.payload,
         }
         case "submitted":
-           debugger;
             return {
                 ...state,
                 submitted: true,
@@ -160,7 +159,13 @@ const AllRadioOutputReducer = (state, action) => {
          return {
              ...state,
              submitted: false,
-     }
+        }
+        case "switchToggleView": {
+            return {
+                ...state,
+                switchToggleValue:action.value
+            }
+        }
     }
 }
 
@@ -203,11 +208,14 @@ const AllRadioOutput = props => {
        sentiment:'neutral',
        is_labeled:'false',
        is_deleted:'false',
-       is_undecided:'false'   
+       is_undecided:'false',
+       switchToggleValue:false,
     }
 
 
     const [state,dispatch] = useReducer(AllRadioOutputReducer,initialState);
+
+    const {switchToggleValue} = state;
 
     const [updateParagraphs,{data}] = useMutation(UPDATE_PARAGRAPH_DATA);
     useEffect(() => {
@@ -270,8 +278,9 @@ const AllRadioOutput = props => {
             is_undecided:state.is_undecided,
             radioDispatch:dispatch,
             radioOutputState:state,
-            id:state.id
-        }}
+            id:state.id,   
+            switchToggleValue
+            }}
     >    
     {props.children}
     </AllRadioOutputContext.Provider>)

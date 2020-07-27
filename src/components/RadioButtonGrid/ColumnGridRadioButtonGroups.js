@@ -1,5 +1,4 @@
 import React,{useContext} from 'react';
-
 import { withStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -15,7 +14,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
 import gql from "graphql-tag";
-import { useSubscription } from "@apollo/react-hooks";
+import { useSubscription,useMutation } from "@apollo/react-hooks";
+
 
 const styles = theme => ({
   root: {
@@ -49,8 +49,34 @@ const styles = theme => ({
 
 });
 
-const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
+
+const MARK_AS_INCORRECT_MUTATION = 
+gql`mutation MarkAsIncorrect($paragraph_id: Int) {
+  update_pub_review_paragraphs(
+    where: {id: {_eq: $paragraph_id}},
+    _set: {
+      how_film_doesnt_work: false, how_film_works: false, enjoyability: false, 
+      effects_on_people: false, no_effect_on_people: false, no_enjoyability: false, 
+      no_production_values: false, production_values: false, why_film_doesnt_work: false, 
+      why_film_works: false, sentiment: "neutral", is_deleted: false, is_labeled: false, is_undecided: false
+    }) 
+    {
+    returning {
+      id
+    }
+  }
+}
+`;
+
+
+const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id,review }) => {
   const radioContext = useContext(AllRadioOutputContext);
+  const {switchToggleValue} = radioContext;
+
+  const [update_pub_review_paragraphs] = useMutation(MARK_AS_INCORRECT_MUTATION,{
+    variables:{paragraph_id:id}
+  });  
+
 
   let label_me = false
 
@@ -61,6 +87,12 @@ const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id }) => {
   }
 }`;
 
+
+
+const markAsIncorrect = (id) => {
+  debugger;
+  update_pub_review_paragraphs();
+}
 const { loading, error, data } = useSubscription(GET_LABELME, {variables: { paragraph_id: id}});
   if (loading) return <p>Loading ...</p>;
   if (error) {
@@ -78,35 +110,37 @@ const { loading, error, data } = useSubscription(GET_LABELME, {variables: { para
     <Grid container direction="row" spacing={2}>
       <Grid container item xs={2} zeroMinWidth>
             <Paper className={classes.paper}>
-                <ProductionValuesRadioButtonGroup />
+                <ProductionValuesRadioButtonGroup review={review} />
             </Paper>
       </Grid>
       <Grid container item xs={2} zeroMinWidth>
             <Paper className={classes.paper}>
-                <HowFilmWorksRadioButtonGroup />
+                <HowFilmWorksRadioButtonGroup review={review} />
             </Paper>
       </Grid>
       <Grid container item xs={2} zeroMinWidth>
             <Paper className={classes.paper}>
-             <EnjoyabilityRadioButtonGroup /> 
+             <EnjoyabilityRadioButtonGroup review={review} /> 
             </Paper>
       </Grid>
       <Grid container item xs={2} zeroMinWidth>
             <Paper className={classes.paper}>
-                <WhyFilmWorksRadioButtonGroup />
+                <WhyFilmWorksRadioButtonGroup review={review} />
             </Paper>
       </Grid>
       <Grid container item xs={2} zeroMinWidth>
             <Paper className={classes.paper}>
-                <EffectsOnPeopleRadioButtonGroup />
+                <EffectsOnPeopleRadioButtonGroup review={review} />
             </Paper>
       </Grid>
       <Grid container item xs={1} zeroMinWidth>
               <Paper className={classes.paper}>
-                <OverallSentimentRadioButtonGroup />
+                <OverallSentimentRadioButtonGroup review={review} />
               </Paper>
-      </Grid>      
-
+      </Grid>
+      {!switchToggleValue &&
+      (     
+      <>
       <Button
         variant="contained"
         color="secondary"
@@ -139,6 +173,22 @@ const { loading, error, data } = useSubscription(GET_LABELME, {variables: { para
       >
         Save
       </Button>
+      </>)}
+      {switchToggleValue &&
+      (     
+      <>
+      <Button
+        variant="contained"
+        color="secondary"
+        size="medium"
+        className={classes.undecidedStyles}        
+        startIcon={<ThreeSixtyIcon />}
+        onClick={()=>{markAsIncorrect(id)}}
+      >
+        Mark as Incorrect
+      </Button>
+      </>)}
+      
       
     </Grid>
   </div>

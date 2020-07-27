@@ -1,4 +1,4 @@
-import React, { useState,useContext } from 'react';
+import React, { useState,useContext,useEffect } from 'react';
 import RadioGroup from './RadioGroup'
 import {AllRadioOutputContext} from '../../contexts/AllRadioOutputContext/AllRadioOutputContext'
 
@@ -9,9 +9,29 @@ const options = [
   { label: 'No Effect on People', value: 'no_effect_on_people' }
 ];
 
-export default function EffectsOnPeopleRadioButtonGroup() {
+export default function EffectsOnPeopleRadioButtonGroup(review) {
   const [value, setValue] = useState('not_applicable');
   const radioContext = useContext(AllRadioOutputContext);
+  const {switchToggleValue} = radioContext;
+
+
+  useEffect(() => {
+    if(switchToggleValue) {
+         console.log(review);
+         if(review.review.effects_on_people === true) {
+            radioContext.radioDispatch({ type: 'effectsonPeople'})
+            setValue('effects_on_people');
+          } else if(review.review.no_effect_on_people === true) {
+            radioContext.radioDispatch({ type: 'noEffectOnPeople'})
+            setValue('no_effect_on_people');
+         } else {
+            radioContext.radioDispatch({ type: 'not_applicable_noEffectOnPeople'});
+            setValue('not_applicable');
+         } 
+    }
+    return () => {
+    }
+  }, [switchToggleValue])
 
   const onChange = e => {
     setValue(e.target.value);
@@ -25,12 +45,7 @@ export default function EffectsOnPeopleRadioButtonGroup() {
   };
 
   return (
-    <RadioGroup
-      value={value}
-      options={options}
-      name="effectsonpeople"
-      
-      onChange={onChange}
-    />
-  );
+     (switchToggleValue === false)  ? <RadioGroup value={value} options={options} name="effectsonpeople" onChange={onChange}/> 
+     : (switchToggleValue === true)  &&  <RadioGroup value={value} options={options} name="effectsonpeople" disabled/> 
+    );
 }
