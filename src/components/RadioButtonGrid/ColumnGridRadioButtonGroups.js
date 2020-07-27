@@ -90,7 +90,6 @@ const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id,review }) =
 
 
 const markAsIncorrect = (id) => {
-  debugger;
   update_pub_review_paragraphs();
 }
 const { loading, error, data } = useSubscription(GET_LABELME, {variables: { paragraph_id: id}});

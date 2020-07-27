@@ -459,3 +459,7 @@ input:checked + .slider:before {
 .parent_toggle__div {
   margin-left:57%;
 }
+
+.userDropdown {
+  margin-left: 76%;
+}

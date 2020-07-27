@@ -166,6 +166,12 @@ const AllRadioOutputReducer = (state, action) => {
                 switchToggleValue:action.value
             }
         }
+        case "changeUser": {
+            return {
+                ...state,
+                user:action.value
+            }
+        }
     }
 }
 
@@ -210,12 +216,13 @@ const AllRadioOutput = props => {
        is_deleted:'false',
        is_undecided:'false',
        switchToggleValue:false,
+       user:''
     }
 
 
     const [state,dispatch] = useReducer(AllRadioOutputReducer,initialState);
 
-    const {switchToggleValue} = state;
+    const {switchToggleValue,user} = state;
 
     const [updateParagraphs,{data}] = useMutation(UPDATE_PARAGRAPH_DATA);
     useEffect(() => {
@@ -279,7 +286,8 @@ const AllRadioOutput = props => {
             radioDispatch:dispatch,
             radioOutputState:state,
             id:state.id,   
-            switchToggleValue
+            switchToggleValue,
+            user
             }}
     >    
     {props.children}
