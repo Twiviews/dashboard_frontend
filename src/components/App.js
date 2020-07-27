@@ -49,6 +49,7 @@ const App = ({ idToken }) => {
   return (
     <ApolloProvider client={client}>
     <AllRadioOutput client={client}>
+    <Header logoutHandler={logout} />
       <ReviewLabelingParent/>
       </AllRadioOutput>
     </ApolloProvider>  

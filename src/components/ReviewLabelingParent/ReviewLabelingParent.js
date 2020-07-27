@@ -1,5 +1,4 @@
 import React, {useContext,useEffect} from "react";
-import Header from "../Header";
 import UnLabeledReviewsWrapper from "../Reviews/UnLabeledReviewsWrapper";
 import LabeledReviewsWrapper from "../LabeledReviewsWrapper/LabeledReviewsWrapper";
 import OnlineUsersWrapper from "../OnlineUsers/OnlineUsersWrapper";
@@ -15,8 +14,7 @@ const ReviewLabelingParent = () => {
     console.log(radioContext.switchToggleValue);
   },[radioContext.switchToggleValue])
   return (
-    <div>
-    <Header/>
+    <div>    
       <div className="parent_toggle__div">  
           <h2>Labeled Reviews</h2>
             <label class="switch">
