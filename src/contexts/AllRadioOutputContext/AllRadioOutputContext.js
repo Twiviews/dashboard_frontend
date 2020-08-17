@@ -172,6 +172,18 @@ const AllRadioOutputReducer = (state, action) => {
                 user:action.value
             }
         }
+        case "changeMapperState": {
+            return {
+                ...state,
+                [action.field]:action.value
+            }
+        }
+        case "changeCurrentSentence": {
+            return {
+                ...state,
+                currentSentence:action.value
+            }
+        }
     }
 }
 
@@ -216,13 +228,34 @@ const AllRadioOutput = props => {
        is_deleted:'false',
        is_undecided:'false',
        switchToggleValue:false,
-       user:''
+       user:'',
+       selectedArray:0,
+       Sen_Production_Values:'',
+       Sen_No_Production_Values:'',
+       Sen_NA_Production_Values:'',
+       Sen_How_Film_Works:'',
+       Sen_No_How_Film_Works:'',
+       Sen_NA_How_Film_Works:'',
+       Sen_Enjoyability:'',
+       Sen_No_Enjoyability:'',
+       Sen_NA_Enjoyability:'',
+       Sen_Why_Film_Works:'',
+       Sen_Why_Film_doesnt_Work:'',
+       Sen_NA_Why_Film_Works:'',
+       Sen_Effects_on_people:'',
+       Sen_No_Effects_on_people:'',
+       Sen_NA_Effects_on_people:'',
+       Sen_Overall_Positive:'',
+       Sen_Overall_Negative:'',
+       Sen_Overall_Neutral:'',
+       currentSentence:'',
     }
 
 
     const [state,dispatch] = useReducer(AllRadioOutputReducer,initialState);
 
-    const {switchToggleValue,user} = state;
+
+    const {switchToggleValue,user,selectedArray,currentSentence} = state;
 
     const [updateParagraphs,{data}] = useMutation(UPDATE_PARAGRAPH_DATA);
     useEffect(() => {
@@ -287,7 +320,9 @@ const AllRadioOutput = props => {
             radioOutputState:state,
             id:state.id,   
             switchToggleValue,
-            user
+            user,
+            selectedArray,
+            currentSentence,
             }}
     >    
     {props.children}

@@ -39,6 +39,12 @@ const styles = theme => ({
     marginTop: "7%",
   },
 
+  matchedSentenceStyles: {
+    position: "absolute",
+    marginLeft: "82%",
+    marginTop: "13.5%",
+  },
+
   undecidedStyles:{
     position: "absolute",
     marginLeft: "82%",
@@ -91,6 +97,10 @@ const ColumnGridRadioButtonGroups = withStyles(styles)(({ classes,id,review }) =
 
 const markAsIncorrect = (id) => {
   update_pub_review_paragraphs();
+}
+
+const matchedSentenceSubmit = () => {
+  console.log(radioContext.radioOutputState);
 }
 const { loading, error, data } = useSubscription(GET_LABELME, {variables: { paragraph_id: id}});
   if (loading) return <p>Loading ...</p>;
@@ -171,6 +181,16 @@ const { loading, error, data } = useSubscription(GET_LABELME, {variables: { para
         onClick={()=>{ if(label_me) {radioContext.radioDispatch({ type: 'submitted'});radioContext.radioDispatch({ type: 'setId',payload:id})} else { alert('Please click LABEL ME! first')}}}
       >
         Save
+      </Button>
+      <Button
+        variant="contained"
+        color="primary"
+        size="medium"
+        className={classes.matchedSentenceStyles}
+        startIcon={<SaveIcon />}
+        onClick={()=>{ matchedSentenceSubmit() }}
+      >
+        MatchedSentenceSubmit
       </Button>
       </>)}
       {switchToggleValue &&
