@@ -44,7 +44,7 @@ export const GET_LABELED_REVIEWS = gql`
                                                         is_deleted:{ _eq: false},
                                                         is_undecided:{ _eq: false}
                                                         },
-                                                        limit:25,
+                                                        # limit:25,
                                                                 order_by: { review_id : desc })
                                                                 {
                                                                   id
