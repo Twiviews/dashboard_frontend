@@ -463,3 +463,8 @@ input:checked + .slider:before {
 .userDropdown {
   margin-left: 76%;
 }
+
+.selectMapper {
+  visibility:hidden;
+  position: absolute;
+}
