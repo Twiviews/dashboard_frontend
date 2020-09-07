@@ -175,7 +175,98 @@ const AllRadioOutputReducer = (state, action) => {
         case "changeMapperState": {
             return {
                 ...state,
-                [action.field]:action.value
+                sentenceSelectedArray:[...state.sentenceSelectedArray, state.sentenceSelectedArray.map((data)=>{
+                    if("Sen_Production_Values" === action.field) {
+                        state.sentenceSelectedArray[0].currentSentence = state.currentSentence;
+                        state.sentenceSelectedArray[0].Sen_Production_Values = true;      
+                        state.sentenceSelectedArray[0].currentField = action.field;                          
+                    }
+                    if("Sen_No_Production_Values" === action.field) {
+                        state.sentenceSelectedArray[1].currentSentence = state.currentSentence;  
+                        state.sentenceSelectedArray[1].Sen_No_Production_Values = true;   
+                        state.sentenceSelectedArray[1].currentField = action.field;                                                     
+                    }
+                    if("Sen_NA_Production_Values" === action.field ) {
+                        state.sentenceSelectedArray[2].currentSentence = state.currentSentence;
+                        state.sentenceSelectedArray[2].Sen_NA_Production_Values = true;   
+                        state.sentenceSelectedArray[2].currentField = action.field;                                                                    
+                    }
+                    if("Sen_How_Film_Works" === action.field ) {
+                        state.sentenceSelectedArray[3].currentSentence = state.currentSentence;
+                        state.sentenceSelectedArray[3].Sen_How_Film_Works = true;       
+                        state.sentenceSelectedArray[3].currentField = action.field;                                                                                                                      
+                    }
+                    if("Sen_No_How_Film_Works" ===  action.field) {
+                        state.sentenceSelectedArray[4].currentSentence = state.currentSentence;                
+                        state.sentenceSelectedArray[4].Sen_No_How_Film_Works = true;  
+                        state.sentenceSelectedArray[4].currentField = action.field;                                                                                                                           
+                    }
+                    if("Sen_NA_How_Film_Works" === action.field ) {
+                        state.sentenceSelectedArray[5].currentSentence = state.currentSentence;
+                        state.sentenceSelectedArray[5].Sen_NA_How_Film_Works = true;      
+                        state.sentenceSelectedArray[5].currentField = action.field;                                                                                                                                     
+                    }
+                    if("Sen_Enjoyability" === action.field) {
+                        state.sentenceSelectedArray[6].currentSentence = state.currentSentence;
+                        state.sentenceSelectedArray[6].Sen_Enjoyability = true;   
+                        state.sentenceSelectedArray[6].currentField = action.field;                                                                                                                                                        
+                    }
+                    if("Sen_No_Enjoyability" === action.field ) {
+                        state.sentenceSelectedArray[7].currentSentence = state.currentSentence;
+                        state.sentenceSelectedArray[7].Sen_No_Enjoyability = true;     
+                        state.sentenceSelectedArray[7].currentField = action.field;                                                                                              
+                    }
+                    if("Sen_NA_Enjoyability" === action.field) {
+                        state.sentenceSelectedArray[8].currentSentence = state.currentSentence;
+                        state.sentenceSelectedArray[8].Sen_NA_Enjoyability = true;           
+                        state.sentenceSelectedArray[8].currentField = action.field;                                                                                                       
+                    }
+                    if("Sen_Why_Film_Works" === action.field) {
+                        state.sentenceSelectedArray[9].currentSentence = state.currentSentence;                
+                        state.sentenceSelectedArray[9].Sen_Why_Film_Works = true;     
+                        state.sentenceSelectedArray[9].currentField = action.field;                                                                                                             
+                    }
+                    if("Sen_Why_Film_doesnt_Work" === action.field) {
+                        state.sentenceSelectedArray[10].currentSentence = state.currentSentence;
+                        state.sentenceSelectedArray[10].Sen_Why_Film_doesnt_Work = true; 
+                        state.sentenceSelectedArray[10].currentField = action.field;                                                                                                         
+                    }
+                    if("Sen_NA_Why_Film_Works" === action.field) {
+                        state.sentenceSelectedArray[11].currentSentence = state.currentSentence;
+                        state.sentenceSelectedArray[11].Sen_NA_Why_Film_Works = true;    
+                        state.sentenceSelectedArray[11].currentField = action.field;                                                                                                          
+                    }
+                    if("Sen_Effects_on_people" === action.field) {
+                        state.sentenceSelectedArray[12].currentSentence = state.currentSentence;
+                        state.sentenceSelectedArray[12].Sen_Effects_on_people = true;
+                        state.sentenceSelectedArray[12].currentField = action.field;                                                                                                                              
+                    }
+                    if("Sen_No_Effects_on_people" === action.field) {
+                        state.sentenceSelectedArray[13].currentSentence = state.currentSentence;
+                        state.sentenceSelectedArray[13].Sen_No_Effects_on_people = true; 
+                        state.sentenceSelectedArray[13].currentField = action.field;                                                                                                                                             
+                    }
+                    if("Sen_NA_Effects_on_people" === action.field) {
+                        state.sentenceSelectedArray[14].currentSentence = state.currentSentence;
+                        state.sentenceSelectedArray[14].Sen_NA_Effects_on_people = true;   
+                        state.sentenceSelectedArray[14].currentField = action.field;                                                                                                                                                           
+                    }
+                    if("Sen_Overall_Positive" === action.field ) {
+                        state.sentenceSelectedArray[15].currentSentence = state.currentSentence;
+                        state.sentenceSelectedArray[15].Sen_Overall_Positive = true;   
+                        state.sentenceSelectedArray[15].currentField = action.field;                                                                                                                                                                           
+                    }
+                    if("Sen_Overall_Negative" === action.field) {
+                        state.sentenceSelectedArray[16].currentSentence = state.currentSentence;
+                        state.sentenceSelectedArray[16].Sen_Overall_Negative = true;   
+                        state.sentenceSelectedArray[16].currentField = action.field;                                                                                                                                                                                           
+                    }
+                    if("Sen_Overall_Neutral" === action.field) {
+                        state.sentenceSelectedArray[17].currentSentence = state.currentSentence;
+                        state.sentenceSelectedArray[17].Sen_Overall_Neutral = true;      
+                        state.sentenceSelectedArray[17].currentField = action.field;                                                                                                                                                                                                        
+                    }
+                })]
             }
         }
         case "changeCurrentSentence": {
@@ -230,7 +321,117 @@ const AllRadioOutput = props => {
        switchToggleValue:false,
        user:'',
        selectedArray:0,
-       Sen_Production_Values:'',
+       sentenceSelectedArray:[
+           {
+               id:1,
+               currentSentence:'',
+               Sen_Production_Values:false,
+               currentField:''
+           },
+           {
+               id:2,
+               currentSentence:'',
+               Sen_No_Production_Values:false,
+               currentField:''
+           },
+           {
+               id:3,
+               currentSentence:'',
+               Sen_NA_Production_Values:false,
+               currentField:''
+           },
+           {
+               id:4,
+               currentSentence:'',
+               Sen_How_Film_Works:false,
+               currentField:''
+           },
+           {
+               id:5,
+               currentSentence:'',
+               Sen_No_How_Film_Works:false,
+               currentField:''
+           },
+           {
+               id:6,
+               currentSentence:'',
+               Sen_NA_How_Film_Works:false,
+               currentField:''
+           },
+           {
+               id:7,
+               currentSentence:'',
+               Sen_Enjoyability:false,
+               currentField:''
+           },
+           {
+               id:8,
+               currentSentence:'',
+               Sen_No_Enjoyability:false,
+               currentField:''
+           },
+           {
+               id:9,
+               currentSentence:'',
+               Sen_NA_Enjoyability:false,
+               currentField:''
+           },
+           {
+               id:10,
+               currentSentence:'',
+               Sen_Why_Film_Works:false,
+               currentField:''
+           },
+           { 
+               id:11,
+               currentSentence:'',
+               Sen_Why_Film_doesnt_Work:false,
+               currentField:''
+           },
+           {
+               id:12,
+               currentSentence:'',
+               Sen_NA_Why_Film_Works:false,
+               currentField:''
+           },
+           {
+               id:13,
+               currentSentence:'',
+               Sen_Effects_on_people:false,
+               currentField:''
+           },
+           {
+               id:14,
+               currentSentence:'',
+               Sen_No_Effects_on_people:false,
+               currentField:''
+           },
+           {
+               id:15,
+               currentSentence:'',
+               Sen_NA_Effects_on_people:false,
+               currentField:''
+           },
+           {
+               id:16,
+               currentSentence:'',
+               Sen_Overall_Positive:false,
+               currentField:''
+           },
+           { 
+               id:17,
+               currentSentence:'',
+               Sen_Overall_Negative:false,
+               currentField:''
+           },
+           {
+               id:18,
+               currentSentence:'',
+               Sen_Overall_Neutral:false,
+               currentField:''
+           },
+       ],
+       /*Sen_Production_Values:'',
        Sen_No_Production_Values:'',
        Sen_NA_Production_Values:'',
        Sen_How_Film_Works:'',
@@ -247,7 +448,7 @@ const AllRadioOutput = props => {
        Sen_NA_Effects_on_people:'',
        Sen_Overall_Positive:'',
        Sen_Overall_Negative:'',
-       Sen_Overall_Neutral:'',
+       Sen_Overall_Neutral:'',*/
        currentSentence:'',
     }
 

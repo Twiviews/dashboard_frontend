@@ -9,6 +9,7 @@ import WorkedByComponent from '../Reviews/WorkedByComponent'
 import gql from "graphql-tag";
 import { useQuery, useMutation, useSubscription } from "@apollo/react-hooks";
 import {AllRadioOutputContext} from "../../contexts/AllRadioOutputContext/AllRadioOutputContext";
+import SelectedParagraphList from "./SelectedParagraphList/SelectedParagraphList";
 import '../../styles/App.css';
 
 
@@ -115,6 +116,7 @@ const ReviewItem = withStyles(styles)(({ classes, index, review, username }) => 
           </Grid>
         <ColumnGridRadioButtonGroups id={review.id}/>
         <WorkedByComponent paragraph_id={review.id}/>
+        <SelectedParagraphList/>
       </Container>
       <div>
         <select ref={sentenceMapperRef} onChange={(e)=>{getMappingValue(e)}} className="selectMapper">
